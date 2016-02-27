@@ -32,7 +32,9 @@ public class AdvancedCustomArrayAdapter extends ArrayAdapter<String>{
         Firebase.setAndroidContext(getContext());
         //following line caches the datasnapshot from firebase on ur app so everytime u reopen the app there is no delay in loading
         Firebase.getDefaultConfig().setPersistenceEnabled(true);
-        myFirebaseRef = new Firebase("https://bbsrstudyjam.firebaseio.com/");
+        //myFirebaseRef = new Firebase("https://bbsrstudyjam.firebaseio.com/");
+        myFirebaseRef = new Firebase("https://debandroid.firebaseio.com");
+
         //This lines keeps the local copy synched with the remote copy in firebase
         myFirebaseRef.keepSynced(true);
 
@@ -100,7 +102,7 @@ public class AdvancedCustomArrayAdapter extends ArrayAdapter<String>{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                viewContainer.txtTitle.setText(String.valueOf(dataSnapshot.child("presidents").child(String.valueOf(pos)).child("Name").getValue()));
+                viewContainer.txtTitle.setText(String.valueOf(dataSnapshot.child("presidents").child(String.valueOf(pos)).child("name").getValue()));
                 Picasso.with(getContext()).load(String.valueOf(dataSnapshot.child("presidents").child(String.valueOf(pos)).child("imageUrl").getValue())).into(viewContainer.imageView);
 
             }
